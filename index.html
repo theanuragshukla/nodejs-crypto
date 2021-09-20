@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+</head>
+<body>
+	<input id="toEncrypt" type="text" name="toEncrypt">
+	<button onclick='encrypt()' >encrypt</button>
+	<input id="toDecrypt" type="text" name="toDecrypt">
+	<button onclick='decrypt()' >decrypt</button>
+	<textarea id="result"readonly='true' cols="30" rows="10"></textarea>
+
+	<script>
+function encrypt(){
+			var data =document.getElementById('toEncrypt').value; 
+		alert(data);
+	
+	$.ajax({
+            url:"/encrypt",
+            type: "post",
+	    dataType: 'json',
+            data:{a:data},
+            success:function(result){
+			document.getElementById('result').value=result.result;
+		    	},
+            error:function(result){
+        		 alert('error')
+			}
+			});
+}
+
+function decrypt(){
+		var data = document.getElementById('toDecrypt').value;
+	$.ajax({
+            url:"/decrypt",
+            type: "post",
+            dataType: 'json',
+            data:{a:data},
+            success:function(result){
+                        document.getElementById('result').value=result.result;
+                        },
+            error:function(result){
+                         alert('error')
+                        }
+                        });
+}
+	</script>
+</body>
+</html>
