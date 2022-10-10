@@ -2,15 +2,29 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
+	<title>crypto</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+	</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 </head>
 <body>
+
+	<div class="encrypt">
 	<input id="toEncrypt" type="text" name="toEncrypt">
 	<button onclick='encrypt()' >encrypt</button>
+	</div>
+	<div class="decrypt">
 	<input id="toDecrypt" type="text" name="toDecrypt">
-	<button onclick='decrypt()' >decrypt</button>
+        <button onclick='decrypt()' >decrypt</button>
+	</div>
+	<div class="result">
 	<textarea id="result"readonly='true' cols="30" rows="10"></textarea>
+	</div>
 
 	<script>
 function encrypt(){

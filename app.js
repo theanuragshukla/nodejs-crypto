@@ -11,18 +11,17 @@ app.use(express.urlencoded({
 app.use(express.static(__dirname));
 
 var crypto = require("crypto");
-var algorithm = "aes-192-cbc"; //algorithm to use
-var password = "Hello darkness";
-const key = crypto.scryptSync(password, 'salt', 24); //create key
+var algorithm = "aes-192-cbc";
+var password = "easy2guess";
+const key = crypto.scryptSync(password, 'salt', 24);
 
 
 
 function encrypt(e){
-var iv = crypto.randomBytes(16); // generate different ciphertext everytime
-//console.log(iv);
+var iv = crypto.randomBytes(16);
 var cipher = crypto.createCipheriv(algorithm, key, iv);
 var text=e;
-var encrypted = cipher.update(text, 'utf8', 'hex') + cipher.final('hex'); // encrypted text
+var encrypted = cipher.update(text, 'utf8', 'hex') + cipher.final('hex');
 
 return (encrypted+':'+(iv).toString('hex'));
 }
@@ -51,7 +50,6 @@ app.post('/encrypt', (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify({
                 result:encrypt(data)
-        
 }))})
 
 app.post('/decrypt', (req, res) => {
